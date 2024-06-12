@@ -1,0 +1,27 @@
+DO NOT RUN OLLAMA WHILE CONFIGURING THESE SETTINGS. 
+
+On RepoCloud.io, change the environment variable which is CUDA_VISIBLE_DEVICES.
+To do that, we can check what graphics card you have, and most importantly if it is compatible with Ollama + Repocloud.io.
+
+USE THESE LINKS TO SEE IF YOUR GPU IS CAPABLE.
+
+AMD: https://ollama.com/blog/amd-preview 
+Nvidia: https://developer.nvidia.com/cuda-gpus 
+
+If its capable and supported, you can continue.
+
+On the terminal, type in ‘[insertgputype]-smi -L’
+ex. nvidia-smi  -L 
+ 
+This will list out the GPU’s and their indexes that are available in a format similar to this.
+ 
+
+Now, we can set the environment variable using this command:
+‘export CUDA_VISIBLE_DEVICES=(whichever index)’ 
+ex. expord CUDA_VISIBLE_DEVICES=1
+
+You mentioned 4 GPUs.. I believe it should allow you to select any variable from 1-4. If you want to do more than one I would try
+‘export CUDA_VISIBLE_DEVICES [and the numbers that the command above gave your GPUS followed by commas]’
+example: export cuda_visible_devices=0,2 or 4,2 etc. It may even allow you to add all of them. 
+
+After the export, relaunch Ollama and now it should work using your selected GPU’s.
